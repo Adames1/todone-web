@@ -6,10 +6,42 @@ import {
   signOut,
 } from "firebase/auth";
 
-export const onChangeStatusUser = () => {};
+export const onAuthListener = (callback) => {
+  return onAuthStateChanged(auth, callback);
+};
 
-export const logUp = async (email, password) => {};
+export const registerUser = async (email, password) => {
+  try {
+    const userCredential = await createUserWithEmailAndPassword(
+      auth,
+      email,
+      password
+    );
 
-export const logIn = async (email, password) => {};
+    const user = userCredential.user;
 
-export const logOut = async () => {};
+    return user;
+  } catch (error) {
+    console.error("Error creando el usuario: ", error);
+  }
+};
+
+export const loginUser = async (email, password) => {
+  try {
+    const userCredential = await signInWithEmailAndPassword(
+      auth,
+      email,
+      password
+    );
+
+    const user = userCredential.user;
+
+    return user;
+  } catch (error) {
+    console.error("Error al iniciar sesión: ", error);
+  }
+};
+
+export const logoutUser = async () => {
+  await signOut(auth);
+};

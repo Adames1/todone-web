@@ -9,8 +9,8 @@ function AppRoutes() {
   return (
     <Routes>
       {/* protected routes */}
-      <Route path="/" element={<ProtectedRoutes />}>
-        <Route index element={<Home />} />
+      <Route element={<ProtectedRoutes />}>
+        <Route path="/" element={<Home />} />
       </Route>
 
       {/* public routes */}

@@ -1,5 +1,8 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+
+import { validateEmail } from "../../utils/validateEmail";
+import { loginUser } from "../../firebase/auth/auth";
 
 import LayoutAuth from "../../layout/LayoutAuth";
 import Input from "../../components/auth/Input";
@@ -8,10 +11,36 @@ function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
+  const [error, setError] = useState(null);
+
+  const navigate = useNavigate();
+
   const handleLogin = async (e) => {
     e.preventDefault();
 
+    if (!validateEmail(email)) {
+      setError("Por favor ingresar tu correo electronico");
+      return;
+    }
+
+    if (!password) {
+      setError("Por favor ingresar tu contraseña");
+      return;
+    }
+
+    setError("");
+
     // call here function of firebase
+    try {
+      await loginUser(email, password);
+
+      navigate("/");
+
+      setEmail("");
+      setPassword("");
+    } catch (error) {
+      setError("Error al intentar iniciar sesion");
+    }
   };
 
   return (
@@ -40,6 +69,8 @@ function Login() {
             type="password"
           />
 
+          {error && <p className="text-red-500 text-sm pb-2.5">{error}</p>}
+
           <button type="submit" className="btn-primary">
             ACCEDER
           </button>
@@ -47,7 +78,7 @@ function Login() {
           <p className="text-[13px] text-slate-800 mt-3">
             ¿No tienes una cuenta?{" "}
             <Link
-              className="font-medium text-primary underline"
+              className="font-medium text-indigo-500 underline"
               to="/auth/register"
             >
               Registrate
