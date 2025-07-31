@@ -3,7 +3,7 @@ import { auth } from "../firebase/firebaseConfig";
 import { Outlet, Navigate } from "react-router-dom";
 import LoadingScreen from "../components/LoadingScreen";
 
-function ProtectedRoutes() {
+function PublicRoutes() {
   const [loading, setLoading] = useState(true);
   const [user, setUser] = useState(null);
 
@@ -20,11 +20,11 @@ function ProtectedRoutes() {
     return <LoadingScreen />; // Puedes poner un spinner aquí
   }
 
-  if (!user) {
-    return <Navigate to="/auth/login" replace />;
+  if (user) {
+    return <Navigate to="/" replace />;
   }
 
   return <Outlet />;
 }
 
-export default ProtectedRoutes;
+export default PublicRoutes;

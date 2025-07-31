@@ -2,13 +2,8 @@ import { auth } from "../firebaseConfig";
 import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
-  onAuthStateChanged,
   signOut,
 } from "firebase/auth";
-
-export const onAuthListener = (callback) => {
-  return onAuthStateChanged(auth, callback);
-};
 
 export const registerUser = async (email, password) => {
   try {

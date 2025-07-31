@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import toast from "react-hot-toast";
 
 import { validateEmail } from "../../utils/validateEmail";
 import { registerUser } from "../../firebase/auth/auth";
@@ -54,7 +55,7 @@ function Register() {
       setEmail("");
       setPassword("");
     } catch (error) {
-      setError("No se pudo registrar el usuario");
+      toast.error("No se pudo registrar el usuario");
     }
   };
 
