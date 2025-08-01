@@ -5,6 +5,7 @@ import PublicRoutes from "./PublicRoutes";
 import Home from "../pages/app/Home";
 import Login from "../pages/auth/Login";
 import Register from "../pages/auth/Register";
+import Projects from "../pages/app/Projects";
 
 function AppRoutes() {
   return (
@@ -12,6 +13,7 @@ function AppRoutes() {
       {/* protected routes */}
       <Route path="/" element={<ProtectedRoutes />}>
         <Route index element={<Home />} />
+        <Route path="/projects" element={<Projects />} />
       </Route>
 
       {/* public routes */}

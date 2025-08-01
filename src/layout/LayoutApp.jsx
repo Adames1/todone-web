@@ -8,7 +8,7 @@ function LayoutApp({ children }) {
 
       <div className="flex flex-col flex-1 overflow-auto">
         <Header />
-        <main className="flex-1 overflow-y-auto">{children}</main>
+        <main className="flex-1 overflow-y-auto p-6 md:p-8">{children}</main>
       </div>
     </div>
   );

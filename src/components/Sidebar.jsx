@@ -1,12 +1,12 @@
 import { NavLink } from "react-router-dom";
-import { navLinks } from "../utils/NavLinks";
 import { logoutUser } from "../firebase/auth/auth";
+import { navLinks } from "../utils/NavLinks";
 
 import { LogOut, X } from "lucide-react";
 
 function Sidebar() {
   return (
-    <aside className="w-full md:w-64 lg:w-80 h-screen bg-gray-100 fixed md:static z-40 flex flex-col justify-between p-6">
+    <aside className="w-full md:w-64 lg:w-80 h-screen bg-gray-100 fixed md:static z-40 flex flex-col justify-between p-6 transform -translate-x-full md:translate-x-0">
       <div className="divide-y divide-gray-500/40">
         {/* user info / head */}
         <div className="flex flex-col justify-between items-center md:items-start pb-8 space-y-4">
