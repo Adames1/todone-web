@@ -1,5 +1,7 @@
+import LayoutApp from "../../layout/LayoutApp";
+
 function Home() {
-  return <div>Home</div>;
+  return <LayoutApp>Home</LayoutApp>;
 }
 
 export default Home;

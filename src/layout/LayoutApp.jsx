@@ -1,5 +1,17 @@
-function LayoutApp() {
-  return <div>LayoutApp</div>;
+import Sidebar from "../components/Sidebar";
+import Header from "../components/Header";
+
+function LayoutApp({ children }) {
+  return (
+    <div className="flex h-screen overflow-hidden">
+      <Sidebar />
+
+      <div className="flex flex-col flex-1 overflow-auto">
+        <Header />
+        <main className="flex-1 overflow-y-auto">{children}</main>
+      </div>
+    </div>
+  );
 }
 
 export default LayoutApp;
